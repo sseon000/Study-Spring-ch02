@@ -54,6 +54,7 @@ public class YoilTellerMVC {
 		// 4. 결과를 보여줄 view를 지정 (ModelAndView 방식)
 		mv.setViewName("yoil");
 		
+//		return "yoil";
 		return mv;
 		
 		// 4. 결과를 보여줄 view를 지정
