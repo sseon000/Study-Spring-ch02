@@ -23,7 +23,7 @@ import org.springframework.validation.support.BindingAwareModelMap;
 @WebServlet("/myDispatcherServlet")  // http://localhost/ch2/myDispatcherServlet?year=2021&month=10&day=1
 public class MyDispatcherServlet extends HttpServlet {
 	@Override
-	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException { // request, response ∞Ì¡§
 		Map    map = request.getParameterMap();
 		Model  model = null;
 		String viewName = "";

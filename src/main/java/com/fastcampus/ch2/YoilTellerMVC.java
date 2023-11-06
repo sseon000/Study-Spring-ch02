@@ -28,9 +28,10 @@ public class YoilTellerMVC {
 	// 1. 반환 타입 String일 경우 return "화면명"
 	// 2. 반환 타입 X void일 경우 requestMapping url과 같은 화면명
 	// 3. ModelAndView
-	public ModelAndView main(int year, int month, int day, Model model) throws IOException {
+	// public ModelAndView main(int year, int month, int day, Model model) throws IOException {
+	public String main(int year, int month, int day, Model model) throws IOException {
 		
-		ModelAndView mv = new ModelAndView();
+		//ModelAndView mv = new ModelAndView();
 		
 		// 1. 유효성 검사
 //		if(!isValid(year, month, day)) {
@@ -41,21 +42,21 @@ public class YoilTellerMVC {
 		char yoil = getYoil(year, month, day);
 		
 		// 3. 계산한 결과를 모델에 저장
-//		model.addAttribute("year", year);
-//		model.addAttribute("month", month);
-//		model.addAttribute("day", day);
-//		model.addAttribute("yoil", yoil);
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
+		model.addAttribute("day", day);
+		model.addAttribute("yoil", yoil);
 		
-		mv.addObject("year", year);
-		mv.addObject("month", month);
-		mv.addObject("day", day);
-		mv.addObject("yoil", yoil);
-		
+//		mv.addObject("year", year);
+//		mv.addObject("month", month);
+//		mv.addObject("day", day);
+//		mv.addObject("yoil", yoil);
+//		
 		// 4. 결과를 보여줄 view를 지정 (ModelAndView 방식)
-		mv.setViewName("yoil");
+//		mv.setViewName("yoil");
 		
-//		return "yoil";
-		return mv;
+		return "yoil";
+//		return mv;
 		
 		// 4. 결과를 보여줄 view를 지정
 		// 뷰리졸버 설정은 /WEB-INF/spring/appServlet/servlet-context.xml -> <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> ...생략
