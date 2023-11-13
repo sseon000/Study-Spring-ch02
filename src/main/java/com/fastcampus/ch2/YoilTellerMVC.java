@@ -2,7 +2,9 @@ package com.fastcampus.ch2;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +26,18 @@ import java.util.Calendar;
 
 @Controller
 public class YoilTellerMVC {
+	@ExceptionHandler(Exception.class)
+	public String catcher(Exception ex) {
+		ex.printStackTrace();
+		return "yoilError";
+	}
+	
 	@RequestMapping("/getYoilMVC")
 	// 1. 반환 타입 String일 경우 return "화면명"
 	// 2. 반환 타입 X void일 경우 requestMapping url과 같은 화면명
 	// 3. ModelAndView
 	// public ModelAndView main(int year, int month, int day, Model model) throws IOException {
-	public String main(int year, int month, int day, Model model) throws IOException {
+	public String main(@RequestParam(required=true)int year, @RequestParam(required=true)int month, @RequestParam(required=true)int day, Model model) throws IOException {
 		
 		//ModelAndView mv = new ModelAndView();
 		
