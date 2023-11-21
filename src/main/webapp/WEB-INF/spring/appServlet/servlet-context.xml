@@ -20,8 +20,8 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<view-controller path="register/add" view-name="registerForm" />
+	<!-- view-controller는 get요청 밖에 처리못함!! -->
+	<!-- <view-controller path="register/add" view-name="registerForm" />  -->
 	<context:component-scan base-package="com.fastcampus.ch2" />
 	
 	
