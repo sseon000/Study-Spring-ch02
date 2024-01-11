@@ -3,7 +3,9 @@ package com.fastcampus.ch2;
 import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +20,29 @@ public class LoginController {
 		return "loginForm";
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		// 1. 세션 종료
+		session.invalidate();
+		// 2. 홈으로 이동
+		return "redirect:/";
+	}
+	
 	@PostMapping("/login")
-	public String login(String id, String pwd, boolean rememberId, HttpServletResponse response) throws Exception {
+	public String login(String id, String pwd, boolean rememberId, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 1. id와 pwd를 확인
 		if(!loginCheck(id, pwd)) {
 			String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
 			// 2-1. id와 pwd가 일치하지 않으면, loginForm으로 이동			
 			return "redirect:/login/login?msg="+msg;
 		}
-		// 2-2. id와 pwd가 일치하면 
+		
+		// 2-2. id와 pwd가 일치하면
+		// 세션 객체 얻어오기
+		HttpSession session = request.getSession();
+		// 세션 객체에 id를 저장
+		session.setAttribute("id", id);
+		
 		if(rememberId) { 
 			// 쿠키생성, 응답에 저장 
 			Cookie cookie = new Cookie("id", id);
