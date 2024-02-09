@@ -2,18 +2,22 @@ package com.fastcampus.ch2;
 
 import java.io.FileNotFoundException;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class ExceptionController {
 	
 	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 200 -> 500
 	public String catcher(Exception ex, Model m) {
 		System.out.println("catcher() in ExceptionHandler");
-		m.addAttribute("ex", ex);
+		System.out.println("m="+m);
+		//m.addAttribute("ex", ex);
 		return "error";
 	}
 	
@@ -54,8 +58,10 @@ public class ExceptionController {
 		throw new NullPointerException("널포인터 예외가 발생했습니다.");
 	}
 	
+	/*
 	@RequestMapping("/ex3")
 	public String main3() throws Exception {
 		throw new FileNotFoundException("파일낫파운드 예외가 발생했습니다.");
 	}
+	*/
 }

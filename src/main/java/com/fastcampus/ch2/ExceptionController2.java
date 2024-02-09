@@ -1,16 +1,23 @@
 package com.fastcampus.ch2;
 
 
-import java.io.FileNotFoundException;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+//@ResponseStatus(HttpStatus.BAD_REQUEST) // 500 -> 400
+class MyException extends RuntimeException {
+	MyException(String msg) {
+		super(msg);
+	}
+	
+	MyException() { this(""); }
+}
 
 @Controller
 public class ExceptionController2 {
+	
 	/*
 	 * GlobalCatch 클래스에 예외 공통 처리하게끔 변경
 	 * @ControllerAdvice 어노테이션 활용
@@ -30,7 +37,7 @@ public class ExceptionController2 {
 	
 	@RequestMapping("/ex3")
 	public String main() throws Exception {
-		throw new Exception("예외가 발생했습니다.");
+		throw new MyException("예외가 발생했습니다22222222222222.");
 	}
 	
 	@RequestMapping("/ex4")
