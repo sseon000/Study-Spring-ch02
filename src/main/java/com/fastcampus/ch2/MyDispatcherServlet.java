@@ -116,3 +116,12 @@ public class MyDispatcherServlet extends HttpServlet {
 		out.println(result);
 	}
 }
+
+/*
+ * 주요 메서드
+ * void initStrategies() - 기본 전략을 초기화
+ * void doService() - doDispatch()호출
+ * void doDispatch() - 실제 요청을 처리
+ * void processDispatcherResult() - 예외가 발생했는지 확인하고, 발생하지 않았으면 render()를 호출
+ * void render() - 응답결과를 생성해서 전송
+ */
